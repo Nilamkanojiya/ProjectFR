@@ -73,12 +73,13 @@ public class demoTest {
             page.getByRole(AriaRole.GROUP, new Page.GetByRoleOptions().setName("Date of marriage / civil partnership")).getByLabel("Month").fill("1");
             page.getByRole(AriaRole.GROUP, new Page.GetByRoleOptions().setName("Date of marriage / civil partnership")).getByLabel("Year").fill("2021");
             page.getByRole(AriaRole.GROUP, new Page.GetByRoleOptions().setName("Application Issued Date")).getByLabel("Day").fill("1");
-            page.getByRole(AriaRole.GROUP, new Page.GetByRoleOptions().setName("Application Issued Date")).getByLabel("Month").fill("1");;
+            page.getByRole(AriaRole.GROUP, new Page.GetByRoleOptions().setName("Application Issued Date")).getByLabel("Month").fill("1");
             page.getByRole(AriaRole.GROUP, new Page.GetByRoleOptions().setName("Application Issued Date")).getByLabel("Year").fill("2022");
             page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("What stage has the divorce / dissolution case reached ?")).selectOption("1: Petition Issued");
             page.getByLabel("Name of Court / Divorce Centre where petition issued").click();
             page.getByLabel("Name of Court / Divorce Centre where petition issued").fill("watford court");
             page.getByLabel("Upload Petition").click();
+            //TODO fix this
             page.getByLabel("Upload Petition").setInputFiles(Paths.get("demo draft .rtf"));
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue")).click();
             assertThat(page).hasURL("https://manage-case.aat.platform.hmcts.net/cases/case-create/DIVORCE/FinancialRemedyContested/FR_solicitorCreate/FR_solicitorCreate4");
