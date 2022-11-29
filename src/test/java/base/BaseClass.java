@@ -30,10 +30,9 @@ public class BaseClass {
             browser = browserType.launch(new BrowserType.LaunchOptions().setChannel(browserName).setHeadless(false).setSlowMo(sloMo));
         }
 
-        context = browser.newContext();
+        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920,1080));
        // context.close();
-        page.setViewportSize(1920,1080);
-        page = browser.newPage();
+        page = context.newPage();
         logger.info("Browser Name is:" +browserName);
 
     }

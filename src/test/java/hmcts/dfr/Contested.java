@@ -9,23 +9,50 @@ import pages.LoginPage;
 import pages.ManageCasePage;
 
 
-public class contested extends BaseClass {
+public class Contested extends BaseClass {
 
 
    @BeforeClass
    public  void browserStart() {
-      launchPlaywright("chromium", "false", 5000);
+      launchPlaywright("chromium", "false", 3000);
       launchApplication("https://manage-case.aat.platform.hmcts.net/");
    }
 
 
    @Test
-   public void contestedE2E() {
+   public void contestedE2ESolicitor() {
+      String user = "solicitor";
       LoginPage loginPage = new LoginPage(page);
-      loginPage.login();
+      loginPage.login(user);
       ManageCasePage manageCasePage = new ManageCasePage(page);
       manageCasePage.createContestedCase();
       FormA_applicationPage formAApplicationPage = new FormA_applicationPage(page);
+      formAApplicationPage.fillSolicitorDetails();
+      formAApplicationPage.divorceDetail();
+      formAApplicationPage.applicantDetails();
+      formAApplicationPage.respondentDetails();
+      formAApplicationPage.respondentNotRepresented();
+      formAApplicationPage.natureOfApplicationQ();
+      formAApplicationPage.fastTrackApplication();
+      formAApplicationPage.otherQuestion();
+      formAApplicationPage.courtSelection();
+      formAApplicationPage.miamQuestion();
+      formAApplicationPage.miamDetails();
+      formAApplicationPage.uploadOtherDocument();
+      formAApplicationPage.savingApplication();
+      formAApplicationPage.submitApplication();
+   }
+
+   @Test
+   public void contestedE2ECaseWorker() {
+      String user = "case worker";
+      boolean applicantRepresent = true;
+      LoginPage loginPage = new LoginPage(page);
+      loginPage.login(user);
+      ManageCasePage manageCasePage = new ManageCasePage(page);
+      manageCasePage.createContestedCaseViaCaseWorker();
+      FormA_applicationPage formAApplicationPage = new FormA_applicationPage(page);
+      formAApplicationPage.formAApplicationQ(applicantRepresent);
       formAApplicationPage.fillSolicitorDetails();
       formAApplicationPage.divorceDetail();
       formAApplicationPage.applicantDetails();
