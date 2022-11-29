@@ -14,13 +14,13 @@ public class Contested extends BaseClass {
 
    @BeforeClass
    public  void browserStart() {
-      launchPlaywright("chromium", "false", 3000);
+      launchPlaywright("chromium", "false", 1000);
       launchApplication("https://manage-case.aat.platform.hmcts.net/");
    }
 
 
    @Test
-   public void contestedE2ESolicitor() {
+   public void contestedE2ESolicitor() throws InterruptedException {
       String user = "solicitor";
       LoginPage loginPage = new LoginPage(page);
       loginPage.login(user);
@@ -44,7 +44,7 @@ public class Contested extends BaseClass {
    }
 
    @Test
-   public void contestedE2ECaseWorker() {
+   public void contestedE2ECaseWorker() throws InterruptedException {
       String user = "case worker";
       boolean applicantRepresent = true;
       LoginPage loginPage = new LoginPage(page);

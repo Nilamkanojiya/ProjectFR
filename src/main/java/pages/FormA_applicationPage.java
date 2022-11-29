@@ -41,7 +41,7 @@ public class FormA_applicationPage {
         assertThat(page).hasURL("https://manage-case.aat.platform.hmcts.net/cases/case-create/DIVORCE/FinancialRemedyContested/FR_solicitorCreate/FR_solicitorCreate3");
     }
 
-    public void divorceDetail(){
+    public void divorceDetail() throws InterruptedException {
         page.locator("#divorceCaseNumber").fill("lv12d12345");
         page.locator("#dateOfMarriage-day").fill("1");
         page.locator("#dateOfMarriage-month").fill("1");
@@ -54,6 +54,7 @@ public class FormA_applicationPage {
         page.locator("#nameOfCourtDivorceCentre").fill("watford court");
 
         page.locator("#divorceUploadPetition").setInputFiles(Paths.get("Files/scratch.txt"));
+        Thread.sleep(4000);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Continue")).click();
         assertThat(page).hasURL("https://manage-case.aat.platform.hmcts.net/cases/case-create/DIVORCE/FinancialRemedyContested/FR_solicitorCreate/FR_solicitorCreate4");
     }

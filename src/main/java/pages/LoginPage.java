@@ -41,11 +41,12 @@ public class LoginPage {
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign in")).click(); //can replace with xpath too
         page.waitForLoadState(LoadState.LOAD);
         //TODO add 5 second wait or check page loading correct
-//        if (user.equalsIgnoreCase("solicitor")){
-//            page.waitForSelector("#wb-jurisdiction");
-//        } else {
-//        page.waitForSelector("#caseReference");
-//        }
+        if (user.equalsIgnoreCase("solicitor")){
+            page.waitForSelector("#wb-jurisdiction", new Page.WaitForSelectorOptions().setTimeout(10000));
+        } else {
+        page.waitForSelector("#caseReference", new Page.WaitForSelectorOptions().setTimeout(10000));
+        }
+
         if (user.equalsIgnoreCase("solicitor")) {
         assertThat(page).hasURL("https://manage-case.aat.platform.hmcts.net/cases");
         } else if (user.equalsIgnoreCase("case worker")){
